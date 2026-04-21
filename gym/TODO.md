@@ -1,0 +1,1 @@
+# Task: Replace footer social icons with Instagram, Facebook, Twitter icons&#10;&#10;## Steps:&#10;- [ ] Step 1: Import Lucide React icons in gym/components/Footer.tsx&#10;- [ ] Step 2: Update socialLinks array to use icon JSX components instead of emojis&#10;- [ ] Step 3: Verify no other changes needed and complete task
