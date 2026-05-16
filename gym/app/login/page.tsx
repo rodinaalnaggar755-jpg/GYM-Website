@@ -2,14 +2,16 @@
 
 import { motion } from 'framer-motion';
 import AuthModal from '../../components/auth/AuthModal';
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
 
-export default function LoginPage() {
+function LoginModalFromSearchParams() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(true);
-  const initialTab = (searchParams.get('tab') as 'login' | 'signup' | null) ?? 'login';
+
+  const initialTab =
+    (searchParams.get('tab') as 'login' | 'signup' | null) ?? 'login';
 
   const handleClose = () => {
     setIsOpen(false);
@@ -18,7 +20,7 @@ export default function LoginPage() {
   };
 
   return (
-    <motion.main 
+    <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -28,3 +30,12 @@ export default function LoginPage() {
     </motion.main>
   );
 }
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginModalFromSearchParams />
+    </Suspense>
+  );
+}
+
